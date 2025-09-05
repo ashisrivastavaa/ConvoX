@@ -89,5 +89,23 @@ const login = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-module.exports = { register, login };
+ const logout=(req,res)=>{
+  try{
+    return res.status(200).cookie('token',"",{maxAge:0}).json({
+      message:"logout successfully"
+    })
+  }catch(error){
+   console.log(error);
+  }
+ }
+ const getOtherUsers=async(req,res)=>{
+  try{
+      const loggedInUserId=req.id;
+      const otherUsers=await User.find({_id:{$ne:loggedInUserId}}).select("-password"); // everything except password  $ne=noteaualto
+      return res.status(200).json(otherUsers);
+  }
+  catch(error){
+    console.log(error);
+  }
+ }
+module.exports = { register, login,logout ,getOtherUsers};

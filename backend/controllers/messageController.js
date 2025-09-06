@@ -32,7 +32,7 @@ const sendMessage = async (req, res) => {
     conversation.messages.push(newMessage._id);
     await conversation.save();
 
-    return res.status(201).json({ message: "Message sent successfully ✅" });
+    return res.status(201).json({ newMessage });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Server error" });

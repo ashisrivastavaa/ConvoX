@@ -1,13 +1,12 @@
-const express = require('express');
-const { register, getOtherUsers } = require('../controllers/userController'); // import controller
-const {login}=require('../controllers/userController');
-const {logout}=require('../controllers/userController');
-const {isAuth}=require("../middleware/isAuth")
+import express from "express";
+import { getOtherUsers, login, logout, register } from "../controllers/userController.js";
+import isAuthenticated from "../middleware/isAuthenticated.js";
 
 const router = express.Router();
 
-router.post('/register', register); // simpler syntax
-router.post("/login",login);
-router.get("/logout",logout);
-router.get("/",isAuth,getOtherUsers);
-module.exports = router;
+router.route("/register").post(register);
+router.route("/login").post(login);
+router.route("/logout").get(logout);
+router.route("/").get(isAuthenticated,getOtherUsers);
+
+export default router;

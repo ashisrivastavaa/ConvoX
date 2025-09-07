@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import userReducer from "./userslice.js";
+import userReducer from "./userSlice.js";
 import messageReducer from "./messageSlice.js";
 import socketReducer from "./socketSlice.js";
 import {

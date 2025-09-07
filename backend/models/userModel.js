@@ -1,28 +1,27 @@
-const { getRounds } = require('bcrypt');
-const mongoose=require('mongoose');
-const userModel=new mongoose.Schema({
-    fullname:{
-    type:String,
-    required:true
+import mongoose from "mongoose";
+
+const userModel = new mongoose.Schema({
+    fullName:{
+        type:String,
+        required:true
     },
     username:{
-        type:String,
-        required:true,
-        unique:true
+      type:String,
+      required:true,
+      unique:true
     },
     password:{
         type:String,
         required:true
     },
-    profilephoto:{
+    profilePhoto:{
         type:String,
         default:""
     },
     gender:{
         type:String,
-        enum:["male","female"],
+        enum:["male", "female"],
         required:true
-    }   
-},{timestamps:true}
-);
-module.exports=mongoose.model('User',userModel);
+    }
+}, {timestamps:true});
+export const User = mongoose.model("User", userModel);
